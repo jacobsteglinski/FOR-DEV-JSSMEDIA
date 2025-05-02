@@ -1,0 +1,32 @@
+{% schema %}
+    {
+        "name": "exec - Reviews (Local)",
+        "settings": [
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "Heading",
+                "default": "Reviews (Local)"
+            }
+        ],
+        "presets": [
+            {
+                "name": "exec - Reviews (Local)",
+                "category": "Product"
+            }
+        ],
+        "disabled_on": {
+            "groups": ["header", "footer"]
+        }
+    }
+{% endschema %}
+
+{{ 'exec-reviews.css' |  asset_url |  stylesheet_tag }}
+{{ 'exec-reviews-local.js' | asset_url |  script_tag }}
+
+<div class="exec-reviews-container">
+    <h1 class="exec-reviews-heading">{{ section.settings.heading }}</h1>
+    <div id="exec-reviews" class="exec-reviews">
+        {% comment %} Here will dynamically show the reviews from the local database {% endcomment %}
+    </div>
+</div>
