@@ -1,0 +1,34 @@
+{% for product in collection.products %}
+  {%- comment -%} You might use limit: n or offset: n to tell how much or from which number to start a loop {%- endcomment -%}
+  <p
+    style="
+      color:
+      {% if forloop.first %} green
+       {% elsif forloop.last %} orange
+      {% endif %}
+    "
+  >
+    {{ forloop.index }}. {{ product.title }}
+  </p>
+  {% if product.tags.size > 0 %}
+    <h2>Tags:</h2>
+    <ul>
+      {% for tag in product.tags %}
+        <li>
+          {% if tag == 'sleeves' %}
+            {% continue %}
+          {% else %}
+            {{ forloop.parentloop.index }}.{{ forloop.index }}
+            {{ tag }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% else %}
+  <p>This collection has no products</p>
+{% endfor %}
+
+{% for i in (1..5) %}
+  <span>{{ forloop.index }}. Hello World!</span>
+{% endfor %}

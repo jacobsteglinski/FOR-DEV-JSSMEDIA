@@ -1,0 +1,34 @@
+{% if product %}
+  {% assign isAffordable = false %}
+  {% if product.price <= 20000 %}
+    {% assign isAffordable = true %}
+  {% else %}
+    {% assign isAffordable = false %}
+  {% endif %}
+
+  {% style %}
+    .divider {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .product-paragraph {
+      color: #11d421;
+      text-transform: uppercase;
+      font-size: 3rem;
+    }
+    .product-info {
+      color: rgb(51, 244, 240);
+      font-size: 1.5rem;
+    }
+  {% endstyle %}
+  <div>
+    <p class="product-paragraph">Product's info:</p>
+    <ul>
+      <li class="product-info">Title: {{ product.title }}</li>
+      <li class="product-info">Description: {{ product.description }}</li>
+      <li class="product-info">ID: {{ product.id }}</li>
+      <li class="product-info">Affordable: {{ isAffordable }}</li>
+    </ul>
+  </div>
+{% endif %}

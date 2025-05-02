@@ -1,0 +1,46 @@
+{{ 'exec-recommended-products.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name": "exec - Recommendations",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "You may also like"
+    },
+    {
+      "type": "text",
+      "id": "substitute_heading_text",
+      "label": "If recommandations are empty - Featured Products Heading Text",
+      "default": "Featured Products"
+    }
+  ],
+  "presets": [
+    {
+      "name": "exec - Recommendations",
+      "category": "Product"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="related-products-section">
+  <h2 class="related-products-heading">{{ section.settings.heading_text }}</h2>
+
+  <div
+    id="related-products-container"
+    data-product-id="{{ product.id }}"
+    data-heading="{{ section.settings.substitute_heading_text }}"
+  >
+    <!-- Placeholder content while loading -->
+    <div class="loading">Loading recommendations...</div>
+  </div>
+</div>
+
+<script src="{{ 'exec-recommended-products.js' | asset_url }}" defer></script>

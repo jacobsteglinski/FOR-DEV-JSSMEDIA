@@ -1,0 +1,14 @@
+{% comment %}
+  DEPRECTED (DON'T USE)
+     img_url
+     img_tag
+{% endcomment %}
+{{ collection.products.first.featured_image | image_url: width: 500, height: 500 | image_tag }}
+{%- comment -%} CAN'T USE image_tag FILTER {%- endcomment -%}
+<img
+  src="{{ 'landscape.jpg' | asset_img_url: '500x500' }}"
+  alt="Landscape"
+  loading="eager"
+  width="500"
+  height="500"
+>

@@ -1,0 +1,49 @@
+{% assign products = collection.products %}
+{% assign productTitles = products | map: 'title' | reverse %}
+
+{% for title in productTitles %}
+  <span>{{ forloop.index }}. {{ title }}</span>
+{% endfor %}
+
+<p>Seperated: {{ productTitles | join: ' - ' }}</p>
+
+<p>First: {{ productTitles | first }}</p>
+{%- comment -%} Might also wanna use {{ productTitles.first }} {%- endcomment -%}
+<p>Last: {{ productTitles | last }}</p>
+{%- comment -%} Might also wanna use {{ productTitles.last }} {%- endcomment -%}
+<p>Size: {{ productTitles | size }}</p>
+{%- comment -%} Might also wanna use {{ productTitles.size }} {%- endcomment -%}
+
+{%- if productTitles.size > 5 -%}
+  {%- comment -%} If it was "productTitles | size > 5" There would be an error {%- endcomment -%}
+  <p>test</p>
+{%- endif -%}
+
+{% comment %} TWO METHODS TO SORT {% endcomment %}
+
+{% comment %} METHOD NO. 1 {% endcomment %}
+{% assign priceSortedItems = products | sort: 'price' %}
+{% for product in priceSortedItems %}
+  <p>{{ product.title }} - {{ product.price | money }}</p>
+{% endfor %}
+
+{% comment %} METHOD NO. 2 {% endcomment %}
+{% assign allPrices = products | map: 'price' | sort %}
+{% for price in allPrices %}
+  <p>{{ price | money }}</p>
+{% endfor %}
+
+{% assign sumOfPrices = allPrices | sum %}
+<p>Products total: {{ sumOfPrices | money }}</p>
+
+{% assign snowboard = products | where: 'title', 'Snowboard' | first %}
+<p>{{ snowboard.title }} - {{ snowboard.price | money }}</p>
+
+{% assign tags = '' %}
+{% for product in products %}
+  {% for tag in product.tags %}
+    {% assign tags = tags | append: tag | append: '  ' %}
+  {% endfor %}
+{% endfor %}
+
+<p>{{ tags | split: '  ' | uniq | join: ' ' }}</p>

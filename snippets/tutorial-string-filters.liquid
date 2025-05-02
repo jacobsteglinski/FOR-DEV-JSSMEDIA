@@ -1,0 +1,40 @@
+{% assign myString = 'test' %}
+{% assign appended = ' hello' %}
+
+<p>{{ myString | upcase }}</p>
+<p>{{ myString | downcase }}</p>
+<p>{{ myString | capitalize }}</p>
+<p>{{ myString | append: appended | upcase }}</p>
+
+{% assign myStringWithWhitespace = ' test          ' %}
+<p>{{ myStringWithWhitespace | append: '!' }}</p>
+<p>{{ myStringWithWhitespace | strip | append: '!' }}</p>
+
+{% assign myHtmlText = "<p style='color: red'>Hello some extra text extra text extra text</p>" %}
+{{ myHtmlText }}
+{{ myHtmlText | strip_html }}
+
+{% assign myLongText = 'This is a very long text' %}
+<p>{{ myLongText }}</p>
+<p>{{ myLongText | truncate: 20, '?' }}</p>
+<p>{{ myLongText | truncatewords: 4 }}</p>
+
+<p>{{ myHtmlText | strip_html | truncate: 35 }}</p>
+
+{% assign myMulti = '
+    This is the first line
+    This is the second line
+    This is the third line
+    ' %}
+<p>{{ myMulti }}</p>
+<p>{{ myMulti | newline_to_br }}</p>
+
+{% assign myText = 'Hello some extra text extra text' %}
+<p>{{ myText }}</p>
+<p>{{ myText | replace: 'text', 'string' }}</p>
+<p>{{ myText | replace_first: 'text', 'string' }}</p>
+<p>{{ myText | replace_last: 'text', 'string' }}</p>
+
+<p>{{ myText | remove: 'text' }}</p>
+<p>{{ myText | remove_first: 'text' }}</p>
+<p>{{ myText | remove_last: 'text' }}</p>

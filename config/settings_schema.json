@@ -1,11 +1,257 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Dawn",
+    "theme_name": "exec",
     "theme_version": "15.3.0",
     "theme_author": "Shopify",
     "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
     "theme_support_url": "https://support.shopify.com/"
+  },
+  {
+    "name": "exec - Product Filters",
+    "settings": [
+      {
+        "type": "color",
+        "id": "filters_background_color",
+        "label": "Section's Background Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "filters_title_color",
+        "label": "Title Text Color",
+        "default": "#030303"
+      },
+      {
+        "type": "color",
+        "id": "filters_price_color",
+        "label": "Price Text Color",
+        "default": "#444444"
+      },
+      {
+        "type": "color",
+        "id": "filters_sale_bgcolor",
+        "label": "Sale Tag Background Color",
+        "default": "#ff0000"
+      },
+      {
+        "type": "color",
+        "id": "filters_card_border_color",
+        "label": "Card's Border Color",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "filters_card_box_shadow_color",
+        "label": "Card's Box Shadow Color",
+        "default": "#00000066"
+      },
+      {
+        "type": "color",
+        "id": "filters_card_box_shadow_color_onhover",
+        "label": "Card's Box Shadow Color - On Hover",
+        "default": "#000000cc"
+      }
+    ]
+  },
+  {
+    "name": "exec - Recommendations",
+    "settings": [
+      {
+        "type": "color",
+        "id": "recommendations_background_color",
+        "label": "Section's Background Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "recommendations_heading_color",
+        "label": "Section's Heading Color",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "recommendations_product_border_color",
+        "label": "Card's Border Color",
+        "default": "#e0e0e0"
+      },
+      {
+        "type": "color",
+        "id": "recommendations_product_title_color",
+        "label": "Product's Title Color",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "recommendations_product_button_background_color",
+        "label": "Product's Button Background Color",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "recommendations_product_button_background_color_onhover",
+        "label": "Product's Button Background Color On Hover",
+        "default": "#555555"
+      },
+      {
+        "type": "color",
+        "id": "recommendations_loading_color",
+        "label": "Loading Information's Color",
+        "default": "#888888"
+      },
+    ]
+  },
+  {
+    "name": "exec - Featured Products",
+    "settings": [
+      {
+        "type": "color",
+        "id": "featured_background_color",
+        "label": "Background Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "featured_heading_color",
+        "label": "Heading Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "featured_subheading_color",
+        "label": "Subheading Color",
+        "default": "#484443"
+      },
+      {
+        "type": "color",
+        "id": "featured_product_background_color",
+        "label": "Background Color - Products",
+        "default": "#f4f4f4"
+      },
+      {
+        "type": "color",
+        "id": "featured_card_border",
+        "label": "Card border color",
+        "default": "#777777"
+      },
+      {
+        "type": "color",
+        "id": "featured_product_text_color",
+        "label": "Text Color - Products",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "featured_product_info_color",
+        "label": "Info Color - Products",
+        "default": "#2C2C2C"
+      },
+    ]
+  },
+  {
+    "name": "exec - Announcement Bar",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bar_link_color",
+        "label": "Text Color",
+        "default": "#000000",
+      },
+      {
+        "type": "color",
+        "id": "bar_background_color",
+        "label": "Announcement Bar Background Color",
+        "default": "#ffffff",
+      },
+      {
+        "type": "color",
+        "id": "bar_text_decoration_color",
+        "label": "Text Underline Color",
+        "default": "#000000",
+      },
+      {
+        "type": "color",
+        "id": "bar_hover_color",
+        "label": "Text Hover Color",
+        "default": "#333333",
+      },
+    ]
+  },
+  {
+    "name": "FAQ",
+    "settings": [
+      {
+        "type": "color",
+        "id": "faq_background_color",
+        "label": "FAQ Background Color",
+        "default": "#f9f9f9"
+      },
+      {
+        "type": "color",
+        "id": "faq_heading_color",
+        "label": "FAQ Heading Color",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "faq_description_color",
+        "label": "FAQ Description Color",
+        "default": "#666666"
+      },
+      {
+        "type": "color",
+        "id": "faq_item_background_color",
+        "label": "FAQ Item Background Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "faq_item_border_color",
+        "label": "FAQ Item Border Color",
+        "default": "#dddddd"
+      },
+      {
+        "type": "color",
+        "id": "faq_question_color",
+        "label": "FAQ Question Color",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "faq_answer_color",
+        "label": "FAQ Answer Color",
+        "default": "#555555"
+      }
+    ]
+  },
+  {
+    "name": "Baner",
+    "settings": [
+      {
+        "type": "color",
+        "id": "banner_background_color",
+        "label": "Banner Background Color",
+        "default": "#f8f9fa"
+      },
+      {
+        "type": "color",
+        "id": "banner_text_color",
+        "label": "Banner Text Color",
+        "default": "#333"
+      },
+      {
+        "type": "color",
+        "id": "banner_button_color",
+        "label": "Banner Button Color",
+        "default": "#007bff"
+      },
+      {
+        "type": "color",
+        "id": "banner_button_hover_color",
+        "label": "Button Hover Color",
+        "default": "#0056b3"
+      }
+    ]
   },
   {
     "name": "t:settings_schema.logo.name",

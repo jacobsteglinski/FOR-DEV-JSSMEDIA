@@ -1,0 +1,12 @@
+{% comment %} RENDER TAG RENDERS THE CODE FROM ONE OF THE SNIPPETS FILE IN THE DIRECTORY THAT THE RENDER TAG IS USED {% endcomment %}
+{% comment %} RENDER TAG CAN BE USED WITH VARIABLES FOR EXAMPLE: {% render 'tutorial' with 'Default argument' %} {% endcomment %}
+
+<p>{{ tutorial-render-tag }}</p>
+{%- comment -%} CAN BE ACCESSED BY USING THE FILES NAME AS A VAR NAME {%- endcomment -%}
+
+{% comment %} RENDER TAG CAN BE USED WITH NAMED VARIABLES FOR EXAMPLE: {% render 'tutorial', title: 'Render Title' %} {% endcomment %}
+{% assign title = title | default: 'Default Title' %}
+
+<p>{{ title }}</p>
+<p>{{ description }}</p>
+{% comment %} CAN BE ACCESSED BY USING THE NAME OF THE SPECIFIED VARIABLE {% endcomment %}

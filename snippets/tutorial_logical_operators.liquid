@@ -1,0 +1,33 @@
+{% assign price = 5000 %}
+{% comment %} The price on Shopify always appears in cents {% endcomment %}
+
+{% comment %} AND {% endcomment %}
+{% if price < 50000 and price > 25000 %}
+  <p>This is a medium price product</p>
+{% else %}
+  <p>This is not a medium price product</p>
+{% endif %}
+
+{% comment %} OR {% endcomment %}
+{% if price >= 50000 or price < 25000 %}
+  <p>This is not a medium price product</p>
+{% else %}
+  <p>This is a medium price product</p>
+{% endif %}
+
+{% assign title = 'Snowboard' %}
+{% assign type = 'snowboard' %}
+
+{% assign isASnowboard = false %}
+{% if title contains 'Snowboard' or type == 'snowboard' %}
+  {% assign isASnowboard = true %}
+{% endif %}
+{% if isASnowboard and price < 6000 and price >= 3000 %}
+  <p>This is an affordable snowboard</p>
+{% elsif isASnowboard and price >= 6000 %}
+  <p>This an expensive snowboard</p>
+{% elsif isASnowboard and price < 3000 %}
+  <p>This is a cheap snowboard</p>
+{% else %}
+  <p>This is not a snowboard</p>
+{% endif %}

@@ -1,0 +1,34 @@
+{% assign myNumber = '10' %}
+
+{% comment %} MATH {% endcomment %}
+
+{% comment %} {% assign myNewNumber = myNumber | plus: 5 %} {% endcomment %}
+{% comment %} {% assign myNewNumber = myNumber | minus: 5 %} {% endcomment %}
+{% comment %} {% assign myNewNumber = myNumber | times: 5 %} {% endcomment %}
+{% comment %} {% assign myNewNumber = myNumber | divided_by: 5 %} {% endcomment %}
+
+{% assign myNewNumber = myNumber | plus: 0 %}
+
+{% if myNewNumber > 5 %}
+  <p>myNumber is greater than 5</p>
+{% endif %}
+
+{% assign modulo = myNewNumber | modulo: 2 %}
+
+{% if modulo == 0 %}
+  <p>myNumber is even</p>
+{% else %}
+  <p>myNumber is odd</p>
+{% endif %}
+
+{% assign myAbs = -11 %}
+<p>Absolute: {{ myAbs | abs }}</p>
+
+{% assign myRounded = 10.2 %}
+<p>Rounded: {{ myRounded | round }}</p>
+<p>Floored: {{ myRounded | floor }}</p>
+<p>Ceiled: {{ myRounded | ceil }}</p>
+
+{% assign myCapped = 30 %}
+<p>At most: {{ myCapped | at_most: 50 }}</p>
+<p>At least: {{ myCapped | at_least: 50 }}</p>

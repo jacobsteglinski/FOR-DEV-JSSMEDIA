@@ -1,0 +1,40 @@
+{% comment %} DATATYPES THAT WE CAN DECLARE: {% endcomment %}
+
+{% comment %} String {% endcomment %}
+{% assign myString = 'Hello World' %}
+{{ myString }}, {{ myString.size }}
+
+<br>
+
+{% comment %} Number {% endcomment %}
+{% assign myNumber = 123 %}
+{{ myNumber }}
+
+<br>
+
+{% comment %} Boolean {% endcomment %}
+{% assign myBoolean = true %}
+{{ myBoolean }}
+
+<br>
+
+{% comment %} nil or null {% endcomment %}
+{% assign myNil = null %}
+{{ myNil }}
+
+{% if undefinedVariable == null %}
+  <p>undefinedVariable is equal to nil</p>
+{% endif %}
+
+{% comment %} DATATYPES THAT SHOPIFY DECLARES FOR US: {% endcomment %}
+
+<br>
+{% comment %} Array {% endcomment %}
+{% for tag in product.tags %}
+  {{ tag }}
+  <br>
+{% endfor %}
+
+<br>
+{% comment %} Object {% endcomment %}
+<p>Product Title: {{ product.title }}</p>

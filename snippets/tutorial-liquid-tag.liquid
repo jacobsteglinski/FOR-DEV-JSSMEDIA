@@ -1,0 +1,11 @@
+{% comment %} liquid TAG ALLOWS USERS TO USE LIQUID EASILY BY NOT WRITING {%  %} OR {{  }} ALL THE TIME{% endcomment %}
+
+{% liquid
+  assign myVar = 10
+
+  for product in collection.products
+    echo '<p>' | append: product.title | append: '</p>'
+  endfor
+%}
+
+<p>{{ myVar }}</p>

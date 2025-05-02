@@ -1,0 +1,224 @@
+{% schema %}
+{
+  "name": "exec - Featured Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "featured_title",
+      "label": "Section's heading",
+      "default": "Featured Products"
+    },
+    {
+      "type": "text",
+      "id": "featured_subheading",
+      "label": "Section's Description",
+      "default": "New seasonal products"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "exec - Featured Products",
+      "category": "Products",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  }
+}
+{% endschema %}
+
+<style>
+    .exec-featured-container {
+        background-color: {{ settings.featured_background_color }};
+        padding: 40px;
+        border-radius: 12px;
+        text-align: center;
+      }
+
+      .exec-featured-container h1 {
+        font-size: 2.5rem;
+        color: {{ settings.featured_heading_color }};
+        margin-bottom: 15px;
+      }
+
+      .exec-featured-container p {
+        font-size: 1.2rem;
+        color: {{ settings.featured_subheading_color }};
+        margin-bottom: 30px;
+      }
+
+      .exec-featured-products-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+      }
+
+      .exec-featured-product {
+        background-color: {{ settings.featured_product_background_color }};
+        border: 3px solid {{ settings.featured_card_border }};
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        width: 250px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+      }
+
+      .exec-featured-product:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .exec-featured-product h2 {
+        font-size: 1.5rem;
+        color: {{ settings.featured_product_text_color }};
+        margin-bottom: 10px;
+      }
+
+      .exec-featured-product p {
+        font-size: 1rem;
+        color: {{ settings.featured_product_info_color }};
+        margin-bottom: 15px;
+      }
+
+      .exec-featured-product a img {
+        border-radius: 8px;
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s ease, opacity 0.3s ease; /* Added opacity transition */
+      }
+
+      .exec-featured-product a img.fade-out {
+        opacity: 0;
+      }
+
+      .exec-featured-product a img.fade-in {
+        opacity: 1;
+      }
+
+      .exec-featured-product a img:hover {
+        transform: scale(1.05);
+      }
+      .sale-tag {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        background-color: #ff4d4d;
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 4px;
+        z-index: 10;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      }
+
+  .original-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 5px;
+  }
+
+  .current-price {
+    color: #333;
+    font-weight: bold;
+  }
+</style>
+
+<div class="exec-featured-container">
+  <h1>{{ section.settings.featured_title }}</h1>
+  <p>{{ section.settings.featured_subheading }}</p>
+  <div class="exec-featured-products-container">
+    {% for block in section.blocks %}
+      {% assign product = all_products[block.settings.product] %}
+      {% if product %}
+        <div class="exec-featured-product">
+          {% if product.compare_at_price > product.price %}
+            <span class="sale-tag">Sale</span>
+          {% endif %}
+          <h2>{{ product.title }}</h2>
+          <a href="{{ product.url }}">
+            <img
+              src="{{ product.featured_image | img_url: 'medium' }}"
+              alt="{{ product.title }}"
+              {% if product.variants.size > 1 %}
+                data-variant-image="{{ product.variants[1].image | img_url: 'medium' }}"
+              {% endif %}
+            >
+          </a>
+          <p>
+            {% if product.compare_at_price > product.price %}
+              <span class="original-price">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+            <span class="current-price">{{ product.price | money }}</span>
+          </p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const productImages = document.querySelectorAll('.exec-featured-product a img');
+
+    productImages.forEach((img) => {
+      const originalSrc = img.src;
+      const variantSrc = img.dataset.variantImage;
+
+      const switchImage = (imgElement, newSrc) => {
+        imgElement.classList.add('fade-out');
+        imgElement.addEventListener('transitionend', function handleTransition() {
+          imgElement.src = newSrc;
+          imgElement.classList.remove('fade-out');
+          imgElement.classList.add('fade-in');
+          imgElement.addEventListener('transitionend', function handleFadeIn() {
+            imgElement.classList.remove('fade-in');
+            imgElement.removeEventListener('transitionend', handleFadeIn);
+          });
+          imgElement.removeEventListener('transitionend', handleTransition);
+        });
+      };
+
+      img.addEventListener('mouseenter', () => {
+        if (variantSrc && img.src !== variantSrc) {
+          switchImage(img, variantSrc);
+        }
+      });
+
+      img.addEventListener('mouseleave', () => {
+        if (img.src !== originalSrc) {
+          switchImage(img, originalSrc);
+        }
+      });
+    });
+  });
+</script>

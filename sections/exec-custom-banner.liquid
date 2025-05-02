@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="{{ 'exec-custom-banner.css' | asset_url }}">
+
+{% schema %}
+{
+  "name": "exec - Custom Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "banner_title",
+      "label": "Banner - Heading",
+      "default": "Welcome to Our Store"
+    },
+    {
+      "type": "text",
+      "id": "banner_description",
+      "label": "Banner - Description",
+      "default": "Check out Our offer"
+    },
+    {
+      "type": "text",
+      "id": "banner_button_text",
+      "label": "Banner - Button's Text Content",
+      "default": "Shop Now!"
+    },
+    {
+      "type": "url",
+      "id": "banner_button_href",
+      "label": "Banner - Button's Destination URL",
+      "default": "/collections/all"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="exec-banner">
+  <h1>{{ section.settings.banner_title }}</h1>
+  <p>{{ section.settings.banner_description }}</p>
+  <a href="{{ section.settings.banner_button_href }}">{{ section.settings.banner_button_text }}</a>
+</div>

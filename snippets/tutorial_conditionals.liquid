@@ -1,0 +1,13 @@
+{% assign myVariable = 6 %}
+
+{% if myVariable > 10 %}
+  <p>Variable greater than 10</p>
+{% elsif myVariable > 5 %}
+  <p>Variable greater than 5</p>
+{% else %}
+  <p>Variable less than or equal to 5</p>
+{% endif %}
+
+{% unless myVariable == 5 %}
+  <p>Variable is not equal to 5</p>
+{% endunless %}
