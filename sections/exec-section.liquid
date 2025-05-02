@@ -1,0 +1,22 @@
+{% schema %}
+    {
+        "name": "exec - Section",
+        "settings": [
+            {
+                "type": "text",
+                "id": "section_title",
+                "label": "Section's Title",
+                "default": "Welcome to Our Store"
+            }
+        ],
+        "presets": [
+            {
+                "name": "exec - Section"
+            }
+        ]
+    }
+{% endschema %}
+
+<div class="exec-section-container">
+    <h1 class="exec-section-title">{{ section.settings.section_title }}</h1>
+</div>
