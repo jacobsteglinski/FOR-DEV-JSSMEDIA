@@ -1,0 +1,41 @@
+{% schema %}
+    {
+        "name": "exec - Reviews",
+        "settings": [
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "Heading",
+                "default": "Reviews"
+            }
+        ],
+        "presets": [
+            {
+                "name": "exec - Reviews",
+                "category": "Product"
+            }
+        ],
+        "disabled_on": {
+            "groups": ["header", "footer"]
+        }
+    }
+{% endschema %}
+
+{{ 'exec-reviews.css' |  asset_url |  stylesheet_tag }}
+
+<div class="exec-reviews-container">
+    <h1 class="exec-reviews-heading">{{ section.settings.heading }}</h1>
+    <div class="exec-reviews">
+        {% assign reviews_raw = product.metafields.custom.reviews %}
+        {% assign reviews = reviews_raw | replace: '[', '' | replace: ']', '' | split: ',' %}
+        {% if reviews and reviews.size > 0 %}
+            <ul class="exec-reviews-list">
+                {% for review in reviews %}
+                    <li class="exec-review">{{ review | strip | remove: '"' }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="exec-reviews-empty">No reviews available at the moment.</p>
+        {% endif %}
+    </div>
+</div>
