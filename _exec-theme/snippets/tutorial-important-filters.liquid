@@ -1,0 +1,49 @@
+<style>
+  .highlight {
+    background-color: yellow;
+  }
+  .swatch {
+    border-radius: 100%;
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid black;
+    display: block !important;
+    margin: 20px;
+  }
+  .bigger-swatch {
+    border-radius: 100%;
+    width: 12rem;
+    height: 12rem;
+    border: 1px solid black;
+    display: block !important;
+    margin: 20px;
+    text-align: center;
+  }
+</style>
+
+{% comment %} {{ collection.products.first | json }} {% endcomment %}
+
+<p>{{ collection.description | default: 'This is a default description' }}</p>
+
+<p>{{ 'This is some text with more text' | highlight: 'text' }}</p>
+
+{% comment %}
+  YYYY-mm-dd
+{% endcomment %}
+<p>Copyright {{ 'now' | date: '%Y-%m-%d' }}</p>
+
+{% assign black = '#000000' %}
+{% assign white = '#ffffff' %}
+{% assign color1 = 'ff0000' %}
+{% assign color2 = '0000ff' %}
+<div class="swatch" style="background-color: {{ white | color_darken: 75}}"></div>
+<div class="swatch" style="background-color: {{ black | color_lighten: 75}}"></div>
+<div class="swatch" style="background-color: {{ color1 | color_mix: color2, 50 }}"></div>
+
+{% assign color3 = '#00ff00' %}
+<div class="bigger-swatch" style="background-color: {{ color3 | color_to_rgb }}">{{ color3 | color_to_rgb }}</div>
+<div class="bigger-swatch" style="background-color: {{ color3 | color_to_hex }}">{{ color3 | color_to_hex }}</div>
+<div class="bigger-swatch" style="background-color: {{ color3 | color_to_hsl }}">{{ color3 | color_to_hsl }}</div>
+
+<p>{{ '#ffffff' | color_contrast: '#000000' }}, {{ '#ffffff' | color_contrast: '#f3f3f3' }}</p>
+{% comment %} FOR NORMAL TEXT THE 7:1 CONTRAST IS RECOMMENDED AND FOR LARGE TEXT: 4:5:1 {% endcomment %}

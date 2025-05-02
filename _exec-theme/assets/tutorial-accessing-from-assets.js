@@ -1,0 +1,1 @@
+alert("Hello from tutorial-accessing-from-assets.js!")

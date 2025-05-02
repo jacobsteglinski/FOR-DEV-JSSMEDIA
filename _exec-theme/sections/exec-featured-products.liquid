@@ -1,0 +1,123 @@
+{% schema %}
+  {
+    "name": "exec - Featured Products",
+    "settings": [
+      {
+        "type": "text",
+        "id": "featured_title",
+        "label": "Section's heading",
+        "default": "Featured Products"
+      },
+      {
+        "type": "text",
+        "id": "featured_subheading",
+        "label": "Section's Description",
+        "default": "New seasonal products"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Select product"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "exec - Featured Products",
+        "category": "Products",
+        "blocks": [
+          {
+            "type": "product"
+          },
+          {
+            "type": "product"
+          },
+          {
+            "type": "product"
+          }
+        ]
+      }
+    ],
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    }
+  }
+{% endschema %}
+
+{{ 'exec-featured-products.css' | asset_url | stylesheet_tag }}
+
+<div class="exec-featured-container">
+  <h1>{{ section.settings.featured_title }}</h1>
+  <p>{{ section.settings.featured_subheading }}</p>
+  <div class="exec-featured-products-container">
+    {% for block in section.blocks %}
+      {% assign product = all_products[block.settings.product] %}
+      {% if product %}
+        <div class="exec-featured-product">
+          {% if product.compare_at_price > product.price %}
+            <span class="sale-tag">Sale</span>
+          {% endif %}
+          <h2>{{ product.title }}</h2>
+          <a href="{{ product.url }}">
+            <img
+              src="{{ product.featured_image | img_url: 'medium' }}"
+              alt="{{ product.title }}"
+              {% if product.variants.size > 1 %}
+              data-variant-image="{{ product.variants[1].image | img_url: 'medium' }}"
+              {% endif %}>
+          </a>
+          <p>
+            {% if product.compare_at_price > product.price %}
+              <span class="original-price">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+            <span class="current-price">{{ product.price | money }}</span>
+          </p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const productImages = document.querySelectorAll('.exec-featured-product a img');
+
+    productImages.forEach((img) => {
+      const originalSrc = img.src;
+      const variantSrc = img.dataset.variantImage;
+
+      const switchImage = (imgElement, newSrc) => {
+        imgElement.classList.add('fade-out');
+        imgElement.addEventListener('transitionend', function handleTransition() {
+          imgElement.src = newSrc;
+          imgElement.classList.remove('fade-out');
+          imgElement.classList.add('fade-in');
+          imgElement.addEventListener('transitionend', function handleFadeIn() {
+            imgElement.classList.remove('fade-in');
+            imgElement.removeEventListener('transitionend', handleFadeIn);
+          });
+          imgElement.removeEventListener('transitionend', handleTransition);
+        });
+      };
+
+      img.addEventListener('mouseenter', () => {
+        if (variantSrc && img.src !== variantSrc) {
+          switchImage(img, variantSrc);
+        }
+      });
+
+      img.addEventListener('mouseleave', () => {
+        if (img.src !== originalSrc) {
+          switchImage(img, originalSrc);
+        }
+      });
+    });
+  });
+</script>

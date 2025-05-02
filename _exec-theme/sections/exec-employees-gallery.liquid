@@ -1,0 +1,27 @@
+{% schema %}
+    {
+        "name": "exec - Employees Gallery",
+        "settings": [
+            {
+                "type": "text",
+                "id": "employees_title",
+                "label": "Section's Title",
+                "default": "Our Employees"
+            }
+        ],
+        "presets": [
+            {
+                "name": "exec - Employees Gallery"
+            }
+        ]
+    }
+{% endschema %}
+    
+{{ 'exec-employees-gallery.css' |  asset_url |  stylesheet_tag }}
+{{ 'exec-employees-gallery-db.js' |  asset_url |  script_tag }}
+
+<h2 class="exec-gallery-title">{{ section.settings.employees_title }}</h2>
+<div id="employees-gallery" class="exec-employees-gallery">
+        <!-- Employee data will be injected here -->
+</div>
+    

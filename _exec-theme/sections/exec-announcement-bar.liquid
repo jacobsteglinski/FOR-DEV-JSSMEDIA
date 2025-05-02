@@ -1,0 +1,50 @@
+{% schema %}
+  {
+    "name": "exec - Announcement Bar",
+    "settings": [
+      {
+        "type": "text",
+        "id": "bar_text",
+        "label": "Text Content",
+        "default": "Check out Our New Collection!"
+      },
+      {
+        "type": "url",
+        "id": "bar_link",
+        "label": "Link",
+        "default": "/collections/all"
+      },
+      {
+        "type": "checkbox",
+        "id": "bar_text_decoration",
+        "label": "Text Underline",
+        "default": false
+      }
+    ],
+    "presets": [
+      {
+        "name": "exec - Announcement Bar",
+        "category": "header"
+      }
+    ],
+    "enabled_on": {
+      "groups": ["header"]
+    }
+  }
+{% endschema %}
+
+{{ 'exec-announcement-bar.css' | asset_url | stylesheet_tag }}
+
+<nav class="exec-announcement-bar">
+  <div class="exec-announcement-bar-content">
+    <div class="exec-announcement-bar-marquee">
+      {% for i in (1..20) %}
+        {% if section.settings.bar_link != blank %}
+          <a href="{{ section.settings.bar_link }}">{{ section.settings.bar_text }}</a>
+        {% else %}
+          <p>{{ section.settings.bar_text }}</p>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</nav>

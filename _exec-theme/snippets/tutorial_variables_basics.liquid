@@ -1,0 +1,11 @@
+{% assign variable = 'Hello World' %}
+{% comment %}    assigning variable     {% endcomment %}
+{%- assign other = 'Hello' -%}
+{% comment %}    assigning variable     {% endcomment %}
+
+{{ variable }}
+{{- other -}}
+
+{% comment %} With {%- -%}  the variable output appears as only one line, without it appears with empty lines above and below{% endcomment %}
+
+{% comment %} {{ this is output }}, {%- this is everything but output -%} {% endcomment %}

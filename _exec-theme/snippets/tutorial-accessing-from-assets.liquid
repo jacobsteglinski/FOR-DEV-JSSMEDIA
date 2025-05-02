@@ -1,0 +1,24 @@
+{{ 'tutorial-accessing-from-assets.css' | asset_url | stylesheet_tag }}
+
+<p>{{ collection.description | default: 'This is a default description' }}</p>
+
+<p>{{ 'This is some text with more text' | highlight: 'text' }}</p>
+
+<p>Copyright {{ 'now' | date: '%Y-%m-%d' }}</p>
+
+{% assign black = '#000000' %}
+{% assign white = '#ffffff' %}
+{% assign color1 = 'ff0000' %}
+{% assign color2 = '0000ff' %}
+<div class="swatch" style="background-color: {{ white | color_darken: 75}}"></div>
+<div class="swatch" style="background-color: {{ black | color_lighten: 75}}"></div>
+<div class="swatch" style="background-color: {{ color1 | color_mix: color2, 50 }}"></div>
+
+{% assign color3 = '#00ff00' %}
+<div class="bigger-swatch" style="background-color: {{ color3 | color_to_rgb }}">{{ color3 | color_to_rgb }}</div>
+<div class="bigger-swatch" style="background-color: {{ color3 | color_to_hex }}">{{ color3 | color_to_hex }}</div>
+<div class="bigger-swatch" style="background-color: {{ color3 | color_to_hsl }}">{{ color3 | color_to_hsl }}</div>
+
+<p>{{ '#ffffff' | color_contrast: '#000000' }}, {{ '#ffffff' | color_contrast: '#f3f3f3' }}</p>
+
+<script src="{{ 'tutorial-accessing-from-assets.js' | asset_url }}" defer></script>

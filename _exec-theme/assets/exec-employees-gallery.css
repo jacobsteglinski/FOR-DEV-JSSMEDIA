@@ -1,0 +1,27 @@
+.exec-gallery-title {
+    text-align: center;
+}
+.exec-employees-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.employee-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    width: 200px;
+    height: 150px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    transition: border-radius 1s ease, box-shadow 0.5s ease, transform 1s ease;
+    cursor: pointer;
+}
+.employee-card:hover {
+    box-shadow: 0 0 10px rgba(186, 20, 20, 1);
+    /* border-radius: 50px; */
+    transform: translateY(-10px);
+}

@@ -1,0 +1,38 @@
+{% schema %}
+    {
+        "name": "exec - Product Filters",
+        "settings": [
+            {
+                "type": "text",
+                "id": "product_onsale",
+                "label": "SALE information",
+                "default": "SALE"
+            }
+        ],
+        "presets": [
+            {
+                "name": "exec - Product Filters",
+            }
+        ]
+    }
+{% endschema %}
+
+{{ 'exec-product-filters.css' |  asset_url |  stylesheet_tag }}
+
+<div class="exec-product-filters-container">
+    {% render 'exec-filters' %}
+    <div class="exec-filtered-products">
+        {% for product in collection.products %}
+            <div class="exec-filters-product">
+                {% if product.compare_at_price > product.price %}
+                    <span class="exec-filters-on-sale">{{ section.settings.product_onsale }}</span>
+                {% endif %}
+                <a href="{{ product.url }}">
+                    <img src="{{ product.featured_image |  image_url }} alt="{{ product.title }}" width="200" height="200" class="exec-filters-image">
+                </a>
+                <h2 class="exec-filters-title">{{ product.title }}</h2>
+                <p class="exec-filters-price">{{ product.price | money }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>

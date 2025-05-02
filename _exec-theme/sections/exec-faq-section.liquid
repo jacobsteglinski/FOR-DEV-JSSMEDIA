@@ -1,0 +1,64 @@
+{% schema %}
+  {
+    "name": "exec - FAQ Section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "faq_heading",
+        "label": "FAQ Section - Title",
+        "default": "Frequently Asked Questions"
+      },
+      {
+        "type": "text",
+        "id": "faq_description",
+        "label": "FAQ Section - Description",
+        "default": "Frequently Asked Questions"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "faq_item",
+        "name": "FAQ Item",
+        "settings": [
+          {
+            "type": "text",
+            "id": "faq_question",
+            "label": "Question",
+            "default": "What is the question?"
+          },
+          {
+            "type": "text",
+            "id": "faq_answer",
+            "label": "Answer",
+            "default": "This is the answer to the question."
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "exec - FAQ Section",
+        "category": "Custom"
+      }
+    ],
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    }
+  }
+{% endschema %}
+
+{{ 'exec-faq-section.css' | asset_url | stylesheet_tag }}
+
+<div class="exec-faq-section">
+  <h1>{{ section.settings.faq_heading }}</h1>
+  <p>{{ section.settings.faq_description }}</p>
+
+  <div class="faq-items">
+    {% for block in section.blocks %}
+      <div class="faq-item">
+        <h2>{{ block.settings.faq_question }}</h2>
+        <p>{{ block.settings.faq_answer }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>

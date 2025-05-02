@@ -1,0 +1,19 @@
+{% comment %}
+  {% case type %}
+    {% when 'snowboard' %}
+      <p>This is a Snowboard</p>
+    {% when 'wax' %}
+      <p>This is a ski wax</p>
+    {% else %}
+      <p>No known product type</p>
+  {% endcase %}
+{% endcomment %}
+
+{% if product.type != blank %}
+  {% case type %}
+    {% when 'snowboard' %}
+      <p>This is a Snowboard</p>
+    {% when 'wax' %}
+      <p>This is a ski wax</p>
+  {% endcase %}
+{% endif %}

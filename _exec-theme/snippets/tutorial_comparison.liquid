@@ -1,0 +1,56 @@
+{% assign var = 1 %}
+{% assign string = 'Hello' %}
+
+{% comment %} Greater than {% endcomment %}
+{% if var > 10 %}
+  {% comment %} Do something {% endcomment %}
+{% endif %}
+
+{% comment %} Less than {% endcomment %}
+{% if var <> 10 %}
+  {% comment %} Do something {% endcomment %}
+{% endif %}
+
+{% comment %} Is not equal {% endcomment %}
+{% if var != 10 %}
+  {% comment %} Do something {% endcomment %}
+{% endif %}
+
+{% comment %} Equal (for numbers) {% endcomment %}
+{% if var == 10 %}
+  {% comment %} Do something {% endcomment %}
+{% endif %}
+
+{% comment %} Equal (for strings) {% endcomment %}
+{% if string == 'Hello' %}
+  {% comment %} Do something {% endcomment %}
+{% endif %}
+
+{% comment %} Greater or equal {% endcomment %}
+{% if var >= 10 %}
+  {% comment %} Do something {% endcomment %}
+{% endif %}
+
+{% comment %} Equal or less {% endcomment %}
+{% if var >= 10 %}
+  {% comment %} Do something {% endcomment %}
+{% endif %}
+
+{% comment %} Contains {% endcomment %}
+<p>{{ product.title }}</p>
+
+<p>{{ product.tags }}</p>
+
+{% if product.title contains 'Snowboard' %}
+  <p>This is a snowboard</p>
+{% endif %}
+
+{% if product.title contains 'Winter' %}
+  <p>This is a winter product</p>
+{% endif %}
+
+{% unless var == 10 %}
+  <p>Var is not equal to 10</p>
+{% else %}
+  <p>Var is equal to 10</p>
+{% endunless %}
