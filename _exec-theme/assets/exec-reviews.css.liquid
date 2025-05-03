@@ -50,3 +50,40 @@
     text-align: center;
     margin-top: 20px;
 }
+.review-rating {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.star {
+    font-size: 20px;
+    margin: 0 2px; 
+    color: #ccc;
+}
+
+.star.full {
+    color: #ffd700; 
+}
+
+.star.empty {
+    color: #ccc;
+    content: '\2605'; 
+}
+
+.star.half {
+    position: relative;
+    color: #ccc; 
+}
+
+.star.half::after {
+    content: '\2605';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    color: #ffd700;
+    display: inline-block;
+}
