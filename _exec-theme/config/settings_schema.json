@@ -8,6 +8,95 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "exec - Reviews (Local)",
+    "settings": [
+      {
+        "type": "color",
+        "id": "exec-reviews-bg-color",
+        "label": "Section's Background Color",
+        "default": "#f3f4f6"
+      },
+      {
+        "type": "color",
+        "id": "exec-reviews-title",
+        "label": "Section's Title Color",
+        "default": "#333"
+      },
+      {
+        "type": "color",
+        "id": "exec-review-card-bg-color",
+        "label": "Review's Background Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "exec-review-card-border-color",
+        "label": "Review's Border Color",
+        "default": "#e0e0e0"
+      },
+      {
+        "type": "color",
+        "id": "exec-empty-star-color",
+        "label": "Empty Star Color",
+        "default": "#ccc"
+      },
+      {
+        "type": "color",
+        "id": "exec-full-star-color",
+        "label": "Full Star Color",
+        "default": "#ffd700"
+      },
+      {
+        "type": "color",
+        "id": "exec-add-review-bg-color",
+        "label": "Add Review (form) Background Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "exec-add-review-border-color",
+        "label": "Add Review (form) Border Color",
+        "default": "#e0e0e0"
+      },
+      {
+        "type": "color",
+        "id": "exec-form-input-background-color",
+        "label": "Input's Background Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "exec-form-input-border-color",
+        "label": "Input's Border Color",
+        "default": "#e0e0e0"
+      },
+      {
+        "type": "color",
+        "id": "exec-form-button-bg-color",
+        "label": "Submit Button's Background Color",
+        "default": "#007bff"
+      },
+      {
+        "type": "color",
+        "id": "exec-form-button-bg-color-onhover",
+        "label": "Submit Button's Background Color (On Hover)",
+        "default": "#0056b3"
+      },
+      {
+        "type": "color",
+        "id": "exec-form-button-text-color",
+        "label": "Submit Button's Text Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "exec-reviews-empty-text",
+        "label": "Review's (empty) Text Color",
+        "default": "#888"
+      }
+    ]
+  },
+  {
     "name": "exec - Product Filters",
     "settings": [
       {

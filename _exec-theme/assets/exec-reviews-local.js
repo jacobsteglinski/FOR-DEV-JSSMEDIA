@@ -4,23 +4,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function to generate star ratings
   function generateStars(rating) {
-    const fullStars = Math.floor(rating); // Full stars
-    const halfStar = rating % 1 >= 0.5; // Half star
-    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0); // Empty stars
+    const fullStars = Math.round(rating); // Round to the nearest full star
+    const emptyStars = 5 - fullStars; // Remaining empty stars
 
     let starsHTML = '';
     for (let i = 0; i < fullStars; i++) {
       starsHTML += '<span class="star full">&#9733;</span>'; // Full star
-    }
-    if (halfStar) {
-      starsHTML += '<span class="star half">&#9733;</span>'; // Half star
     }
     for (let i = 0; i < emptyStars; i++) {
       starsHTML += '<span class="star empty">&#9733;</span>'; // Empty star
     }
     return starsHTML;
   }
-
   fetch('http://192.168.0.120/get-reviews.php')
     .then((response) => response.json())
     .then((data) => {
@@ -30,11 +25,11 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       if (data.length === 0) {
-        reviewsContainer.innerHTML = `<p>No employees found.</p>`;
+        reviewsContainer.innerHTML = `<p>No reviews found.</p>`;
         return;
       }
 
-      reviewsContainer.innerHTML = ''; 
+      reviewsContainer.innerHTML = '';
       data.forEach((review) => {
         const stars = generateStars(review.rating);
         const reviewCard = `
@@ -48,31 +43,71 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     })
     .catch((error) => {
-      reviewsContainer.innerHTML = `<p>Failed to load employee data: ${error.message}</p>`;
+      reviewsContainer.innerHTML = `<p>Failed to load review data: ${error.message}</p>`;
     });
 });
 
 // ADD REVIEWS
 document.addEventListener('DOMContentLoaded', function () {
-  const reviewsContainer = document.getElementById('exec-reviews');
   const formContainer = document.getElementById('review-form-container');
 
   // Create and append the form
   const formHTML = `
     <form id="add-review-form">
-      <input type="text" id="author" placeholder="Your Name" required />
-      <textarea id="content" placeholder="Your Review" required></textarea>
-      <input type="number" id="rating" min="1" max="5" placeholder="Rating (1-5)" required />
+      <h2>Share Your Experience<h2>
+      <input type="text" id="author" placeholder="Your Name" required autocomplete=off />
+      <textarea id="content" placeholder="Describe your thoughts"></textarea>
+      <div class="rating-stars" id="rating-stars">
+        ${Array.from({ length: 5 }, (_, i) => `<span class="star" data-value="${i + 1}">&#9733;</span>`).join('')}
+      </div>
+      <input type="hidden" id="rating" required />
       <button type="submit">Submit Review</button>
     </form>
   `;
   formContainer.innerHTML = formHTML;
 
+  // Handle star rating selection
+  const stars = document.querySelectorAll('#rating-stars .star');
+  const ratingInput = document.getElementById('rating');
+
+  stars.forEach((star) => {
+    star.addEventListener('mouseover', function () {
+      // Highlight stars up to the hovered one
+      stars.forEach((s) => s.classList.remove('selected'));
+      this.classList.add('selected');
+      let previousSibling = this.previousElementSibling;
+      while (previousSibling) {
+        previousSibling.classList.add('selected');
+        previousSibling = previousSibling.previousElementSibling;
+      }
+    });
+
+    star.addEventListener('click', function () {
+      const value = parseFloat(this.getAttribute('data-value'));
+      ratingInput.value = value;
+
+      // Lock the selected stars
+      stars.forEach((s) => s.classList.remove('selected'));
+      this.classList.add('selected');
+      let previousSibling = this.previousElementSibling;
+      while (previousSibling) {
+        previousSibling.classList.add('selected');
+        previousSibling = previousSibling.previousElementSibling;
+      }
+    });
+  });
+
+  // Handle form submission
   document.getElementById('add-review-form').addEventListener('submit', function (e) {
     e.preventDefault();
     const author = document.getElementById('author').value;
     const content = document.getElementById('content').value;
-    const rating = parseFloat(document.getElementById('rating').value);
+    const rating = parseFloat(ratingInput.value);
+
+    if (isNaN(rating)) {
+      alert('Please select a rating.');
+      return;
+    }
 
     fetch('http://192.168.0.120/add-review.php', {
       method: 'POST',
