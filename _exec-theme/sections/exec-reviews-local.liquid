@@ -25,8 +25,16 @@
 {{ 'exec-reviews-local.js' | asset_url |  script_tag }}
 
 <div class="exec-reviews-container">
-    <h1 class="exec-reviews-heading">{{ section.settings.heading }}</h1>
-    <div id="review-form-container"></div>
+    <div id="review-form-container">
+        <form id="add-review-form">
+            <h2>{{ section.settings.heading }}<h2>
+            <input type="text" id="author" placeholder="Your Name" required autocomplete=off />
+            <textarea id="content" placeholder="Describe your thoughts"></textarea>
+            <div class="rating-stars" id="rating-stars"></div>
+            <input type="hidden" id="rating" required />
+            <button type="submit">Submit Review</button>
+        </form>
+    </div>
     <div id="exec-reviews" class="exec-reviews">
     {% comment %} Reviews will dynamically appear here {% endcomment %}
     </div>

@@ -33,10 +33,11 @@ document.addEventListener('DOMContentLoaded', function () {
       data.forEach((review) => {
         const stars = generateStars(review.rating);
         const reviewCard = `
-              <div class="exec-review">
+              <div class="exec-review" data-id="${review.id}">
                 <h3>${review.author}</h3>
                 <p>${review.content}</p>
                 <div class="review-rating">${stars}</div>
+                <button class="delete-review">Delete</button> 
               </div>
             `;
         reviewsContainer.innerHTML += reviewCard;
@@ -49,22 +50,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // ADD REVIEWS
 document.addEventListener('DOMContentLoaded', function () {
-  const formContainer = document.getElementById('review-form-container');
+  const starsContainer = document.getElementById('rating-stars');
 
   // Create and append the form
-  const formHTML = `
-    <form id="add-review-form">
-      <h2>Share Your Experience<h2>
-      <input type="text" id="author" placeholder="Your Name" required autocomplete=off />
-      <textarea id="content" placeholder="Describe your thoughts"></textarea>
-      <div class="rating-stars" id="rating-stars">
-        ${Array.from({ length: 5 }, (_, i) => `<span class="star" data-value="${i + 1}">&#9733;</span>`).join('')}
-      </div>
-      <input type="hidden" id="rating" required />
-      <button type="submit">Submit Review</button>
-    </form>
-  `;
-  formContainer.innerHTML = formHTML;
+  const ratingStarsHTML = `${Array.from(
+    { length: 5 },
+    (_, i) => `<span class="star" data-value="${i + 1}">&#9733;</span>`
+  ).join('')}`;
+  starsContainer.innerHTML = ratingStarsHTML;
 
   // Handle star rating selection
   const stars = document.querySelectorAll('#rating-stars .star');
@@ -126,5 +119,44 @@ document.addEventListener('DOMContentLoaded', function () {
       .catch((error) => {
         alert('Error submitting review: ' + error.message);
       });
+  });
+});
+
+// DELETE REVIEWS
+document.addEventListener('DOMContentLoaded', function () {
+  const reviewsContainer = document.getElementById('exec-reviews');
+
+  reviewsContainer.addEventListener('click', function (e) {
+    if (e.target.classList.contains('delete-review')) {
+      const reviewElement = e.target.closest('.exec-review');
+      const reviewId = reviewElement.getAttribute('data-id');
+
+      if (!reviewId) {
+        alert('Review ID not found.');
+        return;
+      }
+
+      if (!confirm('Are you sure you want to delete this review?')) {
+        return;
+      }
+
+      fetch(`http://192.168.0.120/delete-review.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: reviewId }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert('Review deleted successfully!');
+            location.reload();
+          } else {
+            alert('Failed to delete review: ' + data.error);
+          }
+        })
+        .catch((error) => {
+          alert('Error deleting review: ' + error.message);
+        });
+    }
   });
 });
