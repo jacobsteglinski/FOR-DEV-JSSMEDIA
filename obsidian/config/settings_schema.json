@@ -1,0 +1,21 @@
+[
+    {
+        "name": "theme_info",
+        "theme_name": "obsidian",
+        "theme_version": "1.0.0",
+        "theme_author": "exec",
+        "theme_support_email": "exec432@gmail.com",
+        "theme_documentation_url": "https://github.com/exec432"
+    },
+    {
+        "name": "Hero Section",
+        "settings": [
+            {
+                "type": "color",
+                "id": "hero_title_color",
+                "label": "Title Color",
+                "default": "#000000"
+            }
+        ] 
+    }
+]

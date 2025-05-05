@@ -1,0 +1,30 @@
+{% schema %}
+    {
+      "name": "Hero Section",
+      "tag": "section",
+      "class": "hero-section",
+      "settings": [
+        {
+          "type": "text",
+          "id": "hero_title",
+          "label": "Heading Text",
+          "default": "Welcome to Our Store"
+        }
+      ],
+      "presets": [
+        {
+          "name": "Hero Section"
+        }
+      ]
+    }
+    {% endschema %}
+    
+{{ 'hero.css' |  asset_url |  stylesheet_tag }}
+{{ 'hero.js' |  asset_url |  script_tag }}
+
+    <div class="hero-content">
+      <div class="hero-text-wrapper" data-hero-title="{{ section.settings.hero_title }}">
+        {% comment %} Here, the hero_titles content will be shown dynamically {% endcomment %}
+      </div>
+    </div>
+    
