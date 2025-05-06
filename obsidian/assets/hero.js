@@ -13,21 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .join('');
 
-    setTimeout(() => {
-      const spans = heroTextWrapper.querySelectorAll('span');
-      if (spans.length > 0) {
-        const lastSpan = spans[spans.length - 1];
+    const spans = heroTextWrapper.querySelectorAll('span');
+    if (spans.length > 0) {
+      const lastSpan = spans[spans.length - 1];
 
-        lastSpan.addEventListener('animationend', () => {
-          const heroContent = document.querySelector('.hero-content');
-          const newContent = `
-            <h1 class="obsidian">OBSIDIAN</h1>
-          `;
-          heroContent.innerHTML = '';
-          heroContent.innerHTML += newContent;
-          heroContent.classList.add('fade-in');
-        });
-      }
-    }, 3000);
+      lastSpan.addEventListener('animationend', () => {
+        const heroContent = document.querySelector('.hero-content');
+        const newContent = `
+        <h1 class="obsidian">OBSIDIAN</h1>
+        `;
+        heroContent.innerHTML = '';
+        heroContent.innerHTML += newContent;
+        heroContent.classList.add('fade-in');
+      });
+    }
   }
 });
