@@ -1,18 +1,26 @@
+html {
+    background-color: {{ settings.general_background_color }}; 
+}
+body {
+    margin: 0;
+    padding: 0;
+}
 .hero-content {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: {{ settings.hero_background_color }};
 }
 
 .hero-text-wrapper {
     display: flex;
-    gap: 2px; /* Reduced gap between letters */
+    gap: 2px;
 }
 
 .hero-text-wrapper span {
     font-size: 2rem;
-    color: blue;
+    color: {{ settings.hero_title_color }};
     transition: transform 0.3s ease;
     display: inline-block;
     animation: rotateY 0.5s ease-out forwards;
@@ -21,7 +29,18 @@
 }
 
 .hero-text-wrapper .space {
-    width: 10px; /* Adjust this for the space width */
+    width: 10px;
+}
+.obsidian {
+    font-family: "Tagesschrift", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    color: purple;
+    font-size: 4rem;
+}
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 2s ease-out forwards;
 }
 
 @keyframes rotateY {
@@ -34,6 +53,14 @@
     }
     100% {
         transform: rotateY(0deg);
+        opacity: 1;
+    }
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
         opacity: 1;
     }
 }

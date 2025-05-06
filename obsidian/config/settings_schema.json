@@ -8,13 +8,30 @@
         "theme_documentation_url": "https://github.com/exec432"
     },
     {
+        "name": "General Settings",
+        "settings": [
+            {
+                "type": "color",
+                "id": "general_background_color",
+                "label": "Website's Default Background Color",
+                "default": "#121212"
+            }
+        ]
+    },
+    {
         "name": "Hero Section",
         "settings": [
             {
                 "type": "color",
                 "id": "hero_title_color",
                 "label": "Title Color",
-                "default": "#000000"
+                "default": "#f3f3f3"
+            },
+            {
+                "type": "color",
+                "id": "hero_background_color",
+                "label": "Background Color",
+                "default": "#121212"
             }
         ] 
     }
