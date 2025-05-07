@@ -23,6 +23,9 @@
 {{ 'hero.js' |  asset_url |  script_tag }}
 
     <div class="hero-content">
+      {% if settings.favicon %}
+        <img src="{{ settings.favicon |  image_url: width: 200 }}" alt="Brand Logo">
+      {% endif %}
       <div class="hero-text-wrapper" data-hero-title="{{ section.settings.hero_title }}">
         {% comment %} Here, the hero_titles content will be shown dynamically {% endcomment %}
       </div>
