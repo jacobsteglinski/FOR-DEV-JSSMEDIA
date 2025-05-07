@@ -11,16 +11,16 @@
         "name": "General Settings",
         "settings": [
             {
-                "type": "color",
-                "id": "general_background_color",
-                "label": "Website's Default Background Color",
-                "default": "#252525"
-            },
-            {
                 "type": "image_picker",
                 "id": "favicon",
                 "label": "Logo",
                 "info": "This logo will be used as a icon in the browser tab and on the welcome page."
+            },
+            {
+                "type": "color",
+                "id": "general_background_color",
+                "label": "Website's Default Background Color",
+                "default": "#252525"
             }
         ]
     },
