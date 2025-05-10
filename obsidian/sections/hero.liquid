@@ -33,7 +33,9 @@
     <main class="main-content hidden">
         {% comment %} DESKTOP NAVIGATION {% endcomment %}
         <nav class="navigation-bar">
-            <a href="/"><img src="{{ settings.favicon |  image_url: width: 100  }}" alt="Brand's Logo" class="brand-logo"></a>
+            {% if settings.favicon %}
+              <a href="/"><img src="{{ settings.favicon |  image_url: width: 100 }}" alt="Brand's Logo" class="brand-logo"></a>
+            {% endif %}
             <ul class="nav-list nav-font">
                 <li><a href="" class="nav-item">SHOP</a></li>
                 <li><a href="" class="nav-item">CONTACT</a></li>
@@ -45,7 +47,9 @@
         {% comment %} MOBILE NAVIGATION {% endcomment %}
         <button class="hamburger-menu" id="hamburger-menu">&#9776;</button>
         <aside class="sidebar" id="sidebar">
-            <a href="/"><img src="{{ settings.favicon |  image_url: width: 100  }}" alt="Brand's Logo" class="brand-logo-mobile"></a>
+            {% if settings.favicon %}
+              <a href="/"><img src="{{ settings.favicon |  image_url: width: 100  }}" alt="Brand's Logo" class="brand-logo-mobile"></a>
+            {% endif %}
             <ul class="nav-list-mobile nav-font">
                 <li><a href="" class="nav-item-mobile">SHOP</a></li>
                 <li><a href="" class="nav-item-mobile">CONTACT</a></li>
