@@ -19,13 +19,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
       lastSpan.addEventListener('animationend', () => {
         const heroContent = document.querySelector('.hero-content');
-        const newContent = `
-        <h1 class="obsidian">OBSIDIAN</h1>
-        `;
-        heroContent.innerHTML = '';
-        heroContent.innerHTML += newContent;
-        heroContent.classList.add('fade-in');
+        const mainContent = document.querySelector('.main-content');
+
+        heroContent.classList.add('hidden');
+        setTimeout(() => {
+          heroContent.style.display = 'none'; // Hide after transition
+          mainContent.style.display = 'block'; // Show before transition
+          requestAnimationFrame(() => {
+            mainContent.classList.add('shown');
+          });
+        }, 500);
       });
     }
+  }
+
+  const hamburgerMenu = document.getElementById('hamburger-menu');
+  if (hamburgerMenu) {
+    hamburgerMenu.addEventListener('click', () => {
+      const sidebar = document.getElementById('sidebar');
+      if (sidebar) {
+        sidebar.classList.toggle('open');
+      }
+    });
   }
 });
