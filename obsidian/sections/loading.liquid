@@ -1,8 +1,8 @@
 {% schema %}
     {
-      "name": "Hero Section",
+      "name": "Loading Section",
       "tag": "section",
-      "class": "hero-section",
+      "class": "loading-section",
       "settings": [
         {
           "type": "text",
@@ -13,20 +13,20 @@
       ],
       "presets": [
         {
-          "name": "Hero Section"
+          "name": "Loading Section"
         }
       ]
     }
     {% endschema %}
     
-{{ 'hero.css' |  asset_url |  stylesheet_tag }}
-{{ 'hero.js' |  asset_url |  script_tag }}
+{{ 'loading.css' |  asset_url |  stylesheet_tag }}
+{{ 'loading.js' |  asset_url |  script_tag }}
 
-    <div class="hero-content">
+    <div class="loading-content">
       {% if settings.favicon %}
         <img src="{{ settings.favicon |  image_url: width: 200 }}" alt="Brand Logo">
       {% endif %}
-      <div class="hero-text-wrapper" data-hero-title="{{ section.settings.hero_title }}">
+      <div class="loading-text-wrapper" data-loading-title="{{ section.settings.hero_title }}">
         {% comment %} Here, the hero_titles content will be shown dynamically {% endcomment %}
       </div>
     </div>

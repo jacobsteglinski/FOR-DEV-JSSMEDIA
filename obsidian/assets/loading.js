@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const heroTextWrapper = document.querySelector('.hero-text-wrapper');
+  const heroTextWrapper = document.querySelector('.loading-text-wrapper');
 
   if (heroTextWrapper) {
-    const text = heroTextWrapper.getAttribute('data-hero-title');
+    const text = heroTextWrapper.getAttribute('data-loading-title');
     heroTextWrapper.innerHTML = text
       .split('')
       .map((letter, index) => {
@@ -18,13 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const lastSpan = spans[spans.length - 1];
 
       lastSpan.addEventListener('animationend', () => {
-        const heroContent = document.querySelector('.hero-content');
+        const heroContent = document.querySelector('.loading-content');
         const mainContent = document.querySelector('.main-content');
 
         heroContent.classList.add('hidden');
         setTimeout(() => {
-          heroContent.style.display = 'none'; // Hide after transition
-          mainContent.style.display = 'block'; // Show before transition
+          heroContent.style.display = 'none';
+          mainContent.style.display = 'block';
           requestAnimationFrame(() => {
             mainContent.classList.add('shown');
           });

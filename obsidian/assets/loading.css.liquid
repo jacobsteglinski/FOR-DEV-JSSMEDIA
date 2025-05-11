@@ -1,29 +1,21 @@
-html {
-    background-color: {{ settings.general_background_color }}; 
-}
-
-body {
-    margin: 0;
-    padding: 0;
-}
 /* START ANIMATION CONTENT */
-.hero-content {
+.loading-content {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: {{ settings.hero_background_color }};
+    background-color: var(--primary-background-color);
     flex-direction: column;
 }
 
-.hero-text-wrapper {
+.loading-text-wrapper {
     display: flex;
     gap: 2px;
 }
 
-.hero-text-wrapper span {
+.loading-text-wrapper span {
     font-size: 2rem;
-    color: {{ settings.hero_title_color }};
+    color: var(--primary-text-color);
     transition: transform 0.3s ease;
     display: inline-block;
     animation: rotateY 0.5s ease-out forwards;
@@ -31,15 +23,8 @@ body {
     opacity: 0;
 }
 
-.hero-text-wrapper .space {
+.loading-text-wrapper .space {
     width: 10px;
-}
-.obsidian {
-    font-family: "Tagesschrift", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    color: purple;
-    font-size: 4rem;
 }
 
 @keyframes rotateY {
@@ -93,7 +78,7 @@ body {
 .nav-item {
     font-size: 1.25vw;
     cursor: pointer;
-    color: #f3f3f3;
+    color: var(--primary-text-color);
     text-decoration: none;
     position: relative;
 }
@@ -105,7 +90,7 @@ body {
     bottom: -0.2em;
     width: 0;
     height: 0.2vh; 
-    background-color: #ffffff;
+    background-color: {{ settings.loading_navbar_underline_color }};
     transition: width 0.5s ease; 
 }
 
@@ -125,7 +110,7 @@ body {
     left: 2vw;
     background: none;
     border: none;
-    color: #fff;
+    color: {{ settings.loading_hamburger_menu_icon_color }};
     font-size: 2em;
     cursor: pointer;
     z-index: 1000;
@@ -140,8 +125,8 @@ body {
     left: -100%;
     width: 40%; 
     height: 100%;
-    background-color: #333;
-    color: #fff;
+    background-color: {{ settings.secondary_background_color }};
+    color: {{ settings.primary_text_color }};
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
     transition: left 0.5s ease-in-out;
     display: flex;
@@ -167,12 +152,8 @@ body {
 .nav-item-mobile {
     font-size: 1.5em;
     text-decoration: none;
-    color: #fff;
+    color: var(--primary-text-color);
     text-align: center;
-}
-
-.nav-item-mobile:hover {
-    color: #ccc;
 }
 
 /* MISC */

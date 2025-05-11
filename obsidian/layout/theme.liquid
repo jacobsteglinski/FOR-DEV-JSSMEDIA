@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Tagesschrift&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Tagesschrift&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="{{ settings.favicon |  image_url }}" type="image/x-icon">
+  {{ 'root.css' |  asset_url |  stylesheet_tag }}
   {{ content_for_header }}
 </head>
 <body>

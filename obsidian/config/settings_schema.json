@@ -15,30 +15,59 @@
                 "id": "favicon",
                 "label": "Logo",
                 "info": "This logo will be used as a icon in the browser tab and on the welcome page."
-            },
-            {
-                "type": "color",
-                "id": "general_background_color",
-                "label": "Website's Default Background Color",
-                "default": "#252525"
             }
         ]
     },
     {
-        "name": "Hero Section",
+        "name": "Color Settings",
         "settings": [
             {
-                "type": "color",
-                "id": "hero_title_color",
-                "label": "Title Color",
-                "default": "#f3f3f3"
+                "type": "header",
+                "content": "Background Colors"
             },
             {
                 "type": "color",
-                "id": "hero_background_color",
-                "label": "Background Color",
+                "id": "primary_background_color",
+                "label": "Primary Background Color",
                 "default": "#252525"
+            },
+            {
+                "type": "color",
+                "id": "secondary_background_color",
+                "label": "Secondary Background Color",
+                "default": "#333"
+            },
+            {
+                "type": "header",
+                "content": "Text Colors"
+            },
+            {
+                "type": "color",
+                "id": "primary_text_color",
+                "label": "Primary Text Color",
+                "default": "#f3f3f3"
             }
-        ] 
+        ]
+    },
+    {
+        "name": "Loading Section",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Colors"
+            },
+            {
+                "type": "color",
+                "id": "loading_navbar_underline_color",
+                "label": "Navigation Bar Underline Color",
+                "default": "#ffffff" 
+            },
+            {
+                "type": "color",
+                "id": "loading_hamburger_menu_icon_color",
+                "label": "Hamburger Menu's Icon Color",
+                "default": "#ffffff" 
+            }
+        ]   
     }
 ]
