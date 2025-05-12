@@ -1,6 +1,6 @@
 {% schema %}
     {
-      "name": "Loading Section",
+      "name": "LOADING PAGE",
       "tag": "section",
       "class": "loading-section",
       "settings": [
@@ -13,7 +13,7 @@
       ],
       "presets": [
         {
-          "name": "Loading Section"
+          "name": "LOADING PAGE"
         }
       ]
     }
@@ -30,31 +30,3 @@
         {% comment %} Here, the hero_titles content will be shown dynamically {% endcomment %}
       </div>
     </div>
-    <main class="main-content hidden">
-        {% comment %} DESKTOP NAVIGATION {% endcomment %}
-        <nav class="navigation-bar">
-            {% if settings.favicon %}
-              <a href="/"><img src="{{ settings.favicon |  image_url: width: 100 }}" alt="Brand's Logo" class="brand-logo"></a>
-            {% endif %}
-            <ul class="nav-list nav-font">
-                <li><a href="" class="nav-item">SHOP</a></li>
-                <li><a href="" class="nav-item">CONTACT</a></li>
-                <li><a href="" class="nav-item">FAQ</a></li>
-            </ul>
-            <a href=""><img src="{{ 'shopping-cart.png' |  asset_img_url  }}" alt="" class="cart-icon"></a>
-        </nav>
-    
-        {% comment %} MOBILE NAVIGATION {% endcomment %}
-        <button class="hamburger-menu" id="hamburger-menu">&#9776;</button>
-        <aside class="sidebar" id="sidebar">
-            {% if settings.favicon %}
-              <a href="/"><img src="{{ settings.favicon |  image_url: width: 100  }}" alt="Brand's Logo" class="brand-logo-mobile"></a>
-            {% endif %}
-            <ul class="nav-list-mobile nav-font">
-                <li><a href="" class="nav-item-mobile">SHOP</a></li>
-                <li><a href="" class="nav-item-mobile">CONTACT</a></li>
-                <li><a href="" class="nav-item-mobile">FAQ</a></li>
-                <li><a href="" class="nav-item-mobile">CART</a></li>
-            </ul>
-        </aside>
-    </main>

@@ -1,8 +1,11 @@
 {
   "sections": {
-    "main": {
+    "loading": {
       "type": "loading"
+    },
+    "navigation": {
+      "type": "navigation"
     }
   },
-  "order": ["main"]
+  "order": ["loading", "navigation"]
 }

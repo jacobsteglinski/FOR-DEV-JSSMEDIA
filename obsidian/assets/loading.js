@@ -20,26 +20,19 @@ document.addEventListener('DOMContentLoaded', () => {
       lastSpan.addEventListener('animationend', () => {
         const heroContent = document.querySelector('.loading-content');
         const mainContent = document.querySelector('.main-content');
+        const htmlContainer = document.querySelector('html');
 
         heroContent.classList.add('hidden');
         setTimeout(() => {
           heroContent.style.display = 'none';
           mainContent.style.display = 'block';
+          htmlContainer.style.overflow = 'auto';
+
           requestAnimationFrame(() => {
             mainContent.classList.add('shown');
           });
         }, 500);
       });
     }
-  }
-
-  const hamburgerMenu = document.getElementById('hamburger-menu');
-  if (hamburgerMenu) {
-    hamburgerMenu.addEventListener('click', () => {
-      const sidebar = document.getElementById('sidebar');
-      if (sidebar) {
-        sidebar.classList.toggle('open');
-      }
-    });
   }
 });

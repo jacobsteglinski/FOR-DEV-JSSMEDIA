@@ -6,9 +6,23 @@
 
 html {
     background-color: var(--primary-background-color); 
+    overflow: hidden;
 }
 
 body {
     margin: 0;
     padding: 0;
+}
+
+/* MISC */
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.shown {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.75s ease;
 }
