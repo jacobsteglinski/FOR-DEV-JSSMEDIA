@@ -4,7 +4,9 @@
       "type": "loading"
     },
     "navigation": {
-      "type": "navigation"
+      "type": "navigation",
+      "settings": {},
+      "blocks": {}
     }
   },
   "order": ["loading", "navigation"]

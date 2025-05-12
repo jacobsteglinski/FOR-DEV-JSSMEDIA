@@ -1,68 +1,22 @@
-    {% schema %}
+{% schema %}
+{
+  "name": "NAVIGATION BAR",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "cart_icon_toggle",
+      "label": "Show Cart Icon",
+      "default": true
+    }
+  ],
+  "presets": [
     {
       "name": "NAVIGATION BAR",
-      "settings": [
-        {
-            "type": "checkbox",
-            "id": "cart_icon_toggle",
-            "label": "Show Cart Icon",
-            "default": true
-        }
-      ],
-      "blocks": [
-        {
-          "type": "desktop_link",
-          "name": "Navigation Link",
-          "settings": [
-            {
-              "type": "text",
-              "id": "link_text",
-              "label": "Link Text",
-              "default": "SHOP"
-            },
-            {
-              "type": "text",
-              "id": "link_url",
-              "label": "Link URL",
-              "default": "/shop"
-            }
-          ]
-        }
-      ],
-      "presets": [
-        {
-          "name": "NAVIGATION BAR",
-          "category": "Header",
-          "blocks": [
-            {
-              "type": "desktop_link",
-              "name": "SHOP",
-              "settings": {
-                "link_text": "SHOP",
-                "link_url": "/shop"
-              }
-            },
-            {
-              "type": "desktop_link",
-              "name": "CONTACT",
-              "settings": {
-                "link_text": "CONTACT",
-                "link_url": "/contact"
-              }
-            },
-            {
-              "type": "desktop_link",
-              "name": "FAQ",
-              "settings": {
-                "link_text": "FAQ",
-                "link_url": "/faq"
-              }
-            }
-          ]
-        }
-      ]
+      "category": "Header"
     }
-    {% endschema %}
+  ]
+}
+{% endschema %}
 
 {{ 'navigation.css' | asset_url | stylesheet_tag }}
 {{ 'navigation.js' | asset_url | script_tag }}
@@ -71,11 +25,13 @@
     {% comment %} DESKTOP NAVIGATION {% endcomment %}
     <nav class="navigation-bar">
         {% if settings.favicon %}
-          <a href="/"><img src="{{ settings.favicon | image_url: width: 100 }}" alt="Brand's Logo" class="brand-logo"></a>
+          <a href="/"><img src="{{ settings.favicon | image_url: width: 100 }}" alt="{{ shop.name }} logo" class="brand-logo"></a>
+        {% else %}
+          <span class="no-logo-text">{{ shop.name }}</span>
         {% endif %}
         <ul class="nav-list nav-font">
-            {% for block in section.blocks %}
-              <li><a href="{{ block.settings.link_url }}" class="nav-item">{{ block.settings.link_text }}</a></li>
+            {% for link in linklists.main-menu.links %}
+              <li><a href="{{ link.url }}" class="nav-item">{{ link.title }}</a></li>
             {% endfor %}
         </ul>
         {% if section.settings.cart_icon_toggle %}
@@ -90,10 +46,9 @@
           <a href="/"><img src="{{ settings.favicon | image_url: width: 100 }}" alt="Brand's Logo" class="brand-logo-mobile"></a>
         {% endif %}
         <ul class="nav-list-mobile nav-font">
-            {% for block in section.blocks %}
-              <li><a href="{{ block.settings.link_url }}" class="nav-item-mobile">{{ block.settings.link_text }}</a></li>
+            {% for link in linklists.main-menu.links %}
+              <li><a href="{{ link.url }}" class="nav-item-mobile">{{ link.title }}</a></li>
             {% endfor %}
         </ul>
     </aside>
 </main>
-
