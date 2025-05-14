@@ -7,6 +7,17 @@
       "id": "cart_icon_toggle",
       "label": "Show Cart Icon",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Advanced Settings"
+    },
+    {
+      "type": "text",
+      "id": "menu_handle",
+      "label": "Menu Handle",
+      "default": "main-menu",
+      "info": "On default the links are fetched from the Main Menu. You can find this in your Shopify admin under Content > Menus" 
     }
   ],
   "presets": [
@@ -30,7 +41,7 @@
           <span class="no-logo-text">{{ shop.name }}</span>
         {% endif %}
         <ul class="nav-list nav-font">
-            {% for link in linklists.main-menu.links %}
+            {% for link in linklists[section.settings.menu_handle].links %}
               <li><a href="{{ link.url }}" class="nav-item">{{ link.title }}</a></li>
             {% endfor %}
         </ul>
@@ -46,7 +57,7 @@
           <a href="/"><img src="{{ settings.favicon | image_url: width: 100 }}" alt="Brand's Logo" class="brand-logo-mobile"></a>
         {% endif %}
         <ul class="nav-list-mobile nav-font">
-            {% for link in linklists.main-menu.links %}
+            {% for link in linklists[section.settings.menu_handle].links %}
               <li><a href="{{ link.url }}" class="nav-item-mobile">{{ link.title }}</a></li>
             {% endfor %}
         </ul>
