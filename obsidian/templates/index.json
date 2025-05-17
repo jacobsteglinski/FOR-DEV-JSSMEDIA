@@ -7,7 +7,14 @@
       "type": "navigation",
       "settings": {},
       "blocks": {}
+    },
+    "product-grid": {
+      "type": "product-grid",
+      "settings": {
+        "title": "",
+        "description": ""
+      }
     }
   },
-  "order": ["loading", "navigation"]
+  "order": ["loading", "navigation", "product-grid"]
 }

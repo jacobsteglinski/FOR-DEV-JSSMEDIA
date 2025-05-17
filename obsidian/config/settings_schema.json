@@ -46,6 +46,12 @@
                 "id": "primary_text_color",
                 "label": "Primary Text Color",
                 "default": "#f3f3f3"
+            },
+            {
+                "type": "color",
+                "id": "secondary_text_color",
+                "label": "Secondary Text Color",
+                "default": "#b4b4b4"
             }
         ]
     },

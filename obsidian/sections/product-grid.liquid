@@ -1,0 +1,76 @@
+{% schema %}
+{
+    "name": "PRODUCT GRID",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Optional Text"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Product Grid"
+        },
+        {
+            "type": "text",
+            "id": "description",
+            "label": "Description",
+            "default": "This is an example of a product's grid description."
+        },
+        {
+            "type": "collection",
+            "id": "collection",
+            "label": "Select Collection"
+        }
+    ],
+    "presets": [
+        {
+            "name": "PRODUCT GRID",
+            "category": "Main Content",
+            "settings": {
+                "title": "Our Products",
+                "description": "Explore our collection of amazing products.",
+                "collection": null
+            }
+        }
+    ]
+}
+{% endschema %}
+
+{{ 'product-grid.css' | asset_url | stylesheet_tag }}
+
+<section class="product-grid-container">
+    {% if section.settings.title != blank %}
+        <h1 class="product-grid-title">{{ section.settings.title }}</h1>
+    {% endif %}
+    {% if section.settings.description != blank %}
+        <span class="product-grid-description">{{ section.settings.description }}</span>
+    {% endif %}
+    <div class="product-grid">
+        {% if section.settings.collection %}
+            {% assign collection_handle = section.settings.collection %}
+            {% assign collection = collections[collection_handle] %}
+            {% if collection.products.size > 0 %}
+                {% for product in collection.products %}
+                    <div class="product-grid-card">
+                        <a href="{{ product.url }}" class="product-grid-card-link">
+                            <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}" class="product-grid-image">
+                            <h3 class="product-grid-title">{{ product.title }}</h3>
+                            <div class="product-grid-prices">
+                                {% if product.compare_at_price > product.price %}
+                                    <s class="product-grid-price-old">{{ product.compare_at_price | money }}</s>
+                                    <span class="product-grid-price-new">{{ product.price | money }}</span>
+                                {% else %}
+                                    <span class="product-grid-price">{{ product.price | money }}</span>
+                                {% endif %}
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No products found in this collection.</p>
+            {% endif %}
+        {% endif %}
+    </div>
+</section>
