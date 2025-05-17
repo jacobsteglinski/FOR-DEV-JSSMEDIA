@@ -35,19 +35,25 @@
 <main class="main-content hidden">
     {% comment %} DESKTOP NAVIGATION {% endcomment %}
     <nav class="navigation-bar">
+      <div class="nav-side nav-side-left">
         {% if settings.favicon %}
           <a href="/"><img src="{{ settings.favicon | image_url: width: 100 }}" alt="{{ shop.name }} logo" class="brand-logo"></a>
         {% else %}
           <span class="no-logo-text">{{ shop.name }}</span>
         {% endif %}
-        <ul class="nav-list nav-font">
-            {% for link in linklists[section.settings.menu_handle].links %}
-              <li><a href="{{ link.url }}" class="nav-item">{{ link.title }}</a></li>
-            {% endfor %}
-        </ul>
+      </div>
+      <ul class="nav-list nav-font">
+          {% for link in linklists[section.settings.menu_handle].links %}
+            <li><a href="{{ link.url }}" class="nav-item">{{ link.title }}</a></li>
+          {% endfor %}
+      </ul>
+      <div class="nav-side nav-side-right">
         {% if section.settings.cart_icon_toggle %}
             <a href=""><img src="{{ 'shopping-cart.png' | asset_img_url }}" alt="Cart Icon" class="cart-icon"></a>
         {% endif %}
+        <!-- Spacer for symmetry -->
+        <span class="nav-spacer"></span>
+      </div>
     </nav>
 
     {% comment %} MOBILE NAVIGATION {% endcomment %}
