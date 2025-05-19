@@ -21,11 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const heroContent = document.querySelector('.loading-content');
         const mainContent = document.querySelector('.main-content');
         const htmlContainer = document.querySelector('html');
+        const productGridContainer = document.querySelector('.product-grid-container');
 
         heroContent.classList.add('hidden');
         setTimeout(() => {
           heroContent.style.display = 'none';
           mainContent.style.display = 'block';
+          productGridContainer.style.display = 'block';
           htmlContainer.style.overflow = 'auto';
 
           requestAnimationFrame(() => {

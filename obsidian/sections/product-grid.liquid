@@ -4,6 +4,33 @@
     "settings": [
         {
             "type": "header",
+            "content": "Basic Settings"
+        },
+        {
+            "type": "text",
+            "id": "sale_text",
+            "default": "SALE",
+            "label": "Sale tag content"
+        },
+        {
+            "type": "header",
+            "content": "Misc Settings"
+        },
+        {
+            "type": "checkbox",
+            "id": "sale-secondary-color",
+            "label": "Use Secondary Background Color for Sale Tag",
+            "default": true
+        },
+        {
+            "type": "color",
+            "id": "sale-color",
+            "label": "Sale Tag Color",
+            "default": "#e53935",
+            "info": "This color only applies if the 'Use Secondary Background Color for Sale Tag' option is unchecked"
+        },
+        {
+            "type": "header",
             "content": "Optional Text"
         },
         {
@@ -55,6 +82,16 @@
                 {% for product in collection.products %}
                     <div class="product-grid-card">
                         <a href="{{ product.url }}" class="product-grid-card-link">
+                            {% if product.compare_at_price > product.price %}
+                                <span class="sale-tag" 
+                                    style="{% if section.settings.sale-secondary-color %} 
+                                            background-color: var(--secondary-background-color); 
+                                            {% else %} 
+                                            background-color: {{ section.settings.sale-color }}; 
+                                            {% endif %}">
+                                    {{ section.settings.sale_text }}
+                                </span>
+                            {% endif %}
                             <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}" class="product-grid-image">
                             <h3 class="product-grid-title">{{ product.title }}</h3>
                             <div class="product-grid-prices">
