@@ -19,11 +19,20 @@ body {
 .hidden {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease-out;
 }
 
 .shown {
     opacity: 1;
     pointer-events: auto;
-    transition: opacity 0.75s ease;
+    transition: opacity 0.5s ease-in;
+}
+
+.main-content {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.main-content.shown {
+    opacity: 1;
 }

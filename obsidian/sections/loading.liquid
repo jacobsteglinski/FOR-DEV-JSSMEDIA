@@ -13,14 +13,14 @@
       ],
       "presets": [
         {
-          "name": "LOADING PAGE"
+          "name": "LOADING PAGE (HAS TO BE ON TOP)",
+          "category": "1. Suggested"
         }
       ]
     }
     {% endschema %}
     
 {{ 'loading.css' |  asset_url |  stylesheet_tag }}
-{{ 'loading.js' |  asset_url |  script_tag }}
 
     <div class="loading-content">
       {% if settings.favicon %}
